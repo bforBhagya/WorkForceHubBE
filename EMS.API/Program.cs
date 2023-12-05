@@ -20,7 +20,7 @@ namespace EMS.API
             builder.Services.AddDbContext<EmsDbContext>(options =>
                 options.UseMySql(
                     builder.Configuration.GetConnectionString("EmsConnectionString"),
-                    new MySqlServerVersion(new Version(8, 0, 23)))); // Specify your MySQL server version
+                    new MySqlServerVersion(new Version(8, 0, 23))));
 
             var app = builder.Build();
 
@@ -32,6 +32,8 @@ namespace EMS.API
             }
 
             app.UseHttpsRedirection();
+            app.UseCors()
+
             app.UseAuthorization();
             app.MapControllers();
 
